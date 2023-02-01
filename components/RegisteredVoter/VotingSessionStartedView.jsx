@@ -5,6 +5,7 @@ import VotersContent from "../Voters/VotersContent"
 import useEventsProvider from "@/hooks/useEventsProvider"
 
 import { WORKFLOW_STATUS_VALUE } from "@/utils/constants"
+import { Flex } from "@chakra-ui/react"
 
 export default function VotingSessionStartedView() {
   const { workflowStatus } = useEventsProvider()
