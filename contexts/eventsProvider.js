@@ -8,7 +8,7 @@ import { useToast } from "@chakra-ui/react";
 const EventsContext = createContext(null)
 
 export const EventsProvider = ({ children }) => {
-  const { isConnected } = useAccount()
+  const { address, isConnected } = useAccount()
   const toast = useToast()
 
   const [isLoading, setIsLoading] = useState(false)
@@ -23,7 +23,6 @@ export const EventsProvider = ({ children }) => {
   const [proposal, setProposal] = useState({})
   const [voter, setVoter] = useState({})
   const [winningProposalId, setWinningProposalId] = useState(0)
-
 
   const resetDatas = () => {
     setWorkflowStatus({ previousStatus: 0, nextStatus: 1 })
@@ -62,7 +61,7 @@ export const EventsProvider = ({ children }) => {
     if(isConnected){ 
       getEvents()
     }
-  }, [isConnected])
+  }, [isConnected, address])
 
   return (
     <EventsContext.Provider value={{

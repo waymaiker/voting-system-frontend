@@ -6,12 +6,12 @@ import useEventsProvider from '@/hooks/useEventsProvider';
 import useOwnerProvider from '@/hooks/useOwnerProvider';
 
 import { AddVoter } from '@/components/OnlyOwner/AddVoter';
-import VotersContentOwnerView from '@/components/Voters/VotersContentOwnerView';
 import Layout from '@/components/Layout/Layout'
+import VotersContentOwnerView from '@/components/Voters/VotersContentOwnerView';
+import VotingSessionStartedView from '@/components/RegisteredVoter/VotingSessionStartedView';
 import VotesTailledView from '@/components/RegisteredVoter/VotesTailledView';
 
 import { WORKFLOW_STATUS_VALUE } from '@/utils/constants';
-import VotingSessionStartedView from '@/components/RegisteredVoter/VotingSessionStartedView';
 
 export default function Home() {
   const { address } = useAccount()
@@ -21,7 +21,6 @@ export default function Home() {
     && registeredVotersList.find((user) => user.address === address) != undefined 
     && !isOwnerConnected
 
-  
   return (
     <>
       <Head>
@@ -41,16 +40,9 @@ export default function Home() {
               </Text>
             </Flex>
           : <Flex  grow="1" justifyContent="center">
-              {isOwnerConnected && <OwnerView registeredVotersList={registeredVotersList} workflowStatus={workflowStatus} />}
-              {isRegisteredUser && 
-                <RegisteredVoterView 
-                  workflowStatus={workflowStatus} 
-                  proposalsListId={proposalsListId} 
-                  proposalsList={proposalsList} 
-                  winningProposalId={winningProposalId}                  
-                />
-              }
-              {!isOwnerConnected && !isRegisteredUser && <GuestView /> }
+              {isOwnerConnected && <OwnerView workflowStatus={workflowStatus} />}
+              {isRegisteredUser && <RegisteredVoterView />}
+              {!isOwnerConnected && !isRegisteredUser && <GuestView />}
             </Flex>
         }
         </Layout>
@@ -59,15 +51,15 @@ export default function Home() {
   )
 }
 
-const OwnerView = ({registeredVotersList, workflowStatus}) =>
+const OwnerView = ({workflowStatus}) =>
   <Flex direction="column" alignItems="center">
     { WORKFLOW_STATUS_VALUE[workflowStatus.previousStatus] == "RegisteringVoters" && <AddVoter /> }
     <Flex mt="10" direction="column">
-      <VotersContentOwnerView voters={registeredVotersList} />
+      <VotersContentOwnerView />
     </Flex>
   </Flex>
 
-const RegisteredVoterView = ({workflowStatus, proposalsListId, winningProposalId}) =>
+const RegisteredVoterView = () =>
   <Flex direction="column" alignItems="center">
     <RegisteringVotersStatusView />
     <Flex grow="1" justifyItems="center">
