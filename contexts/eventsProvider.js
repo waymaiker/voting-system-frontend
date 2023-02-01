@@ -33,9 +33,9 @@ export const EventsProvider = ({ children }) => {
   }
 
   const getEvents = async () => {
-    const filter = { address: contract.address, fromBlock: 0 }
+    const filter = { address: process.env.NEXT_PUBLIC_SCADDRESS, fromBlock: 0 }
     const provider = new ethers.providers.Web3Provider(window.ethereum)
-    const contractInstance = new ethers.Contract(contract.address, contract.abi, provider)
+    const contractInstance = new ethers.Contract(process.env.NEXT_PUBLIC_SCADDRESS, contract.abi, provider)
     const events = await contractInstance.queryFilter(filter)
 
     resetDatas()

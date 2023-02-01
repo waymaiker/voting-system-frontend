@@ -15,7 +15,7 @@ export default function GetOneProposal () {
 
   const getOneProposal = async () => {
     try {
-      const contractInstance = new ethers.Contract(contract.address, contract.abi, signer)
+      const contractInstance = new ethers.Contract(process.env.NEXT_PUBLIC_SCADDRESS, contract.abi, signer)
       let transaction = await contractInstance.getOneProposal(proposalId)
 
       setProposal({

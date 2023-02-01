@@ -15,7 +15,7 @@ const [description, setDescription] = useState("")
   
   const addProposal = async () => {
     try {
-      const contractInstance = new ethers.Contract(contract.address, contract.abi, signer)
+      const contractInstance = new ethers.Contract(process.env.NEXT_PUBLIC_SCADDRESS, contract.abi, signer)
       let transaction = await contractInstance.addProposal(description)
       await transaction.wait()
   

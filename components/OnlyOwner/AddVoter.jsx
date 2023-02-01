@@ -15,7 +15,7 @@ export const AddVoter = () => {
   const addVoter = async () => {
     setIsLoading(true)
     try {
-      const contractInstance = new ethers.Contract(contract.address, contract.abi, signer)
+      const contractInstance = new ethers.Contract(process.env.NEXT_PUBLIC_SCADDRESS, contract.abi, signer)
       let transaction = await contractInstance.addVoter(userAddress)
       await transaction.wait()
 

@@ -14,7 +14,7 @@ export default function AddVote () {
 
   const addVote = async () => {
     try {
-      const contractInstance = new ethers.Contract(contract.address, contract.abi, signer)
+      const contractInstance = new ethers.Contract(process.env.NEXT_PUBLIC_SCADDRESS, contract.abi, signer)
       let transaction = await contractInstance.setVote(voteId)
       await transaction.wait()
       

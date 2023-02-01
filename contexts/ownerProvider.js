@@ -13,7 +13,7 @@ export const OwnerProvider = ({ children }) => {
   const setUserCurrentlyConnected = async () => {
     const ethersProvider = new ethers.providers.Web3Provider(window.ethereum)
     const signer = ethersProvider.getSigner()
-    const contractInstance = new ethers.Contract(contract.address, contract.abi, signer)
+    const contractInstance = new ethers.Contract(process.env.NEXT_PUBLIC_SCADDRESS, contract.abi, signer)
     const contractOwner =  await contractInstance.owner()
 
     if(address == contractOwner){
