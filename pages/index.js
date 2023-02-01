@@ -12,6 +12,7 @@ import VotingSessionStartedView from '@/components/RegisteredVoter/VotingSession
 import VotesTailledView from '@/components/RegisteredVoter/VotesTailledView';
 
 import { WORKFLOW_STATUS_VALUE } from '@/utils/constants';
+import RegisteringVotersStatusView from '@/components/RegisteredVoter/RegisteringVotersStatusView';
 
 export default function Home() {
   const { address } = useAccount()

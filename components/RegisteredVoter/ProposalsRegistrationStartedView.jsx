@@ -3,6 +3,8 @@ import GetOneProposal from "../OnlyVoters/GetOneProposal";
 import ProposalsContent from "../Proposals/ProposalsContent";
 
 import { WORKFLOW_STATUS_VALUE } from "@/utils/constants";
+import useEventsProvider from "@/hooks/useEventsProvider";
+import { Flex } from "@chakra-ui/react";
 
 export default function ProposalsRegistrationStartedView() {
   const { workflowStatus, proposalsListId } = useEventsProvider()

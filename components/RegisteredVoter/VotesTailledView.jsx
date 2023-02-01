@@ -1,7 +1,10 @@
 import { Flex, Text } from "@chakra-ui/react";
 
-import { WORKFLOW_STATUS_VALUE } from "@/utils/constants";
 import ProposalsRegistrationStartedView from "./ProposalsRegistrationStartedView";
+
+import useEventsProvider from "@/hooks/useEventsProvider";
+
+import { WORKFLOW_STATUS_VALUE } from "@/utils/constants";
 
 export default function VotesTailledView() {
   const { workflowStatus, winningProposalId } = useEventsProvider()
