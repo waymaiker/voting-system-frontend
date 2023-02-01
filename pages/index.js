@@ -31,7 +31,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <>
-        <Layout>
+        <Layout isAGuest={!isOwnerConnected && !isRegisteredUser}>
         {
           isLoading
           ? <Flex grow="1" direction='column' alignItems="center" justifyContent="center">
