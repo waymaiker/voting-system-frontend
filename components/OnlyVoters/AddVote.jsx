@@ -9,10 +9,11 @@ import { contract } from "@/utils/constants";
 
 export default function AddVote () {
   const [voteId, setVoteId] = useState(0)
-  const { getEvents } = useEventsProvider()
+  const { getEvents, setIsLoading } = useEventsProvider()
   const { data: signer } = useSigner()  
 
   const addVote = async () => {
+    setIsLoading(true)
     try {
       const contractInstance = new ethers.Contract(process.env.NEXT_PUBLIC_SCADDRESS, contract.abi, signer)
       let transaction = await contractInstance.setVote(voteId)

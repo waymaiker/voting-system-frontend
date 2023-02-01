@@ -9,11 +9,12 @@ import { toastError, toastSuccess } from "@/utils/methods";
 
 export default function GetVoter () {
   const [voterAddress, setVoterAddress] = useState("0x")
-  const { getEvents, setVoter } = useEventsProvider()
+  const { getEvents, setVoter, setIsLoading } = useEventsProvider()
   const { data: signer } = useSigner()
   const toast = useToast() 
 
   const getVoter = async () => {
+    setIsLoading(true)
     try {
       const contractInstance = new ethers.Contract(process.env.NEXT_PUBLIC_SCADDRESS, contract.abi, signer)
       let transaction = await contractInstance.getVoter(voterAddress)

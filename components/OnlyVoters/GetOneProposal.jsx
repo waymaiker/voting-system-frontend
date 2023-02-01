@@ -9,11 +9,12 @@ import { toastError, toastSuccess } from "@/utils/methods";
 
 export default function GetOneProposal () {
   const [proposalId, setProposalId] = useState(0)
-  const { getEvents, setProposal } = useEventsProvider()
+  const { getEvents, setProposal, setIsLoading } = useEventsProvider()
   const { data: signer } = useSigner()
   const toast = useToast()
 
   const getOneProposal = async () => {
+    setIsLoading(true)
     try {
       const contractInstance = new ethers.Contract(process.env.NEXT_PUBLIC_SCADDRESS, contract.abi, signer)
       let transaction = await contractInstance.getOneProposal(proposalId)

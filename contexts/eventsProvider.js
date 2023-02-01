@@ -89,42 +89,41 @@ export default EventsContext;
 
 const catchVoterRegisteredEvent = (event, setRegisteredVoters, setIsLoading) => {
   if(event.event === "VoterRegistered"){
-    setRegisteredVoters(registeredVotersList => {
-      return [{
+    setRegisteredVoters(registeredVotersList =>[{
         title: "Voter Added",
         address: event.args.voterAddress,
-      }, ...registeredVotersList]
-    })
+      }, ...registeredVotersList
+    ])
     setIsLoading(false)
   }
 }
 
 const catchWorkflowStatusChangeEvent = (event, setWorkflowStatus, setIsLoading) => {
   if(event.event === "WorkflowStatusChange"){
-    setIsLoading(false)
     setWorkflowStatus({
       previousStatus: event.args[0]+1,
       nextStatus: event.args[1]+1,      
     })
+    setIsLoading(false)
   }
 }
 
 const catchProposalEvent = (event, setProposalsListId, setIsLoading) => {
   if(event.event === "ProposalRegistered"){
-    setIsLoading(false)
     setProposalsListId(proposalsListId => [
       ...proposalsListId, parseInt(event.args.proposalId)
     ])
+    setIsLoading(false)
   }
 }
 
 const catchVotedEvent = (event, setVoted, setIsLoading) => {
   if(event.event === "Voted"){
-    setIsLoading(false)
     setVoted(votedList => [{
         voterAddress: event.args.voter,
         proposalId: parseInt(event.args.proposalId),
       }, ...votedList]
     )
+    setIsLoading(false)
   }
 }
