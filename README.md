@@ -36,7 +36,7 @@ Divided into 3 files
 
 ### METHODS
 
-We add tests to make sure that a DoS attack was not possible
+We add tests to make sure that **a DoS attack** was not possible.
 See the test here https://github.com/waymaiker/dapps-voting-system/blob/master/test/unit/votingsystem_methods.test.js#L145
 
 
