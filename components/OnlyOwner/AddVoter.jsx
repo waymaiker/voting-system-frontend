@@ -24,7 +24,6 @@ export const AddVoter = () => {
 
     } catch (error) {
       setIsLoading(false)
-      console.log(error);
       toast(toastError("Add a Voter", error.message))
     }
   }
