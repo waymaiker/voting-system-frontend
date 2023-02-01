@@ -15,8 +15,6 @@ Few rules:
 
 ## Contents
 - [Important](#important)
-- [Tests](#tests)
-  - [Methods](#methods)
 - [How to use this project](#how-to-use-this-project)
 - [Resources](#resources)
 
@@ -25,19 +23,6 @@ Few rules:
 - [My App demo on loom](https://www.loom.com/share/2df1c07a70cd42c6abd4d19e9b214e01)
 - [Client repository](https://github.com/waymaiker/nextjs-voting-system)
 - [Vercel app](https://nextjs-voting-system-mdczrnyz7-wdevblockchain-gmailcom.vercel.app/)
-
-## Tests
-Here I focused on having at least 90% of branch tests coverage.  
-
-![Ceci est un exemple d’image](https://github.com/waymaiker/voting-system/blob/master/test_coverage.png) 
-
-***Currently having 52 tests.***  
-Divided into 3 files
-
-### METHODS
-
-We add tests to make sure that **a DoS attack** was not possible.
-See the test here https://github.com/waymaiker/dapps-voting-system/blob/master/test/unit/votingsystem_methods.test.js#L145
 
 
 ## How to use this project
@@ -55,30 +40,17 @@ git clone https://github.com/waymaiker/voting-system.git
 
 ### Install libraries
 ```shell
-cd voting-system
+cd nextjs-voting-system
 yarn install
 ```
-### hardhat commands
+### commands next
 ```shell
-# Start the local Blockchain
-yarn hardhat node
-```
-
-#### In an other terminal tab
-```shell
-# Deploy your smart contract
-yarn hardhat deploy
-```
-
-#### test commands
-```shell
-yarn hardhat test
-yarn hardhat coverage
+# Start the Client on localhost:3000/
+yarn dev
 ```
 
 ## Resources
 
-* https://www.chaijs.com/api/bdd/
-* https://hardhat.org/tutorial/testing-contracts
-* https://hardhat.org/hardhat-chai-matchers/docs/overview
-* https://docs.ethers.org/v5/api/utils/bignumber/
+* https://chakra-ui.com/
+* https://nextjs.org/
+* https://vercel.com/home
