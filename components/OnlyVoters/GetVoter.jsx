@@ -29,7 +29,6 @@ export default function GetVoter () {
     } catch (error) {
       toastError("Get a voter", error.reason)
     }
-    console.log(voterAddress);
   }
 
   return (

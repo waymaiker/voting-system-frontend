@@ -6,8 +6,6 @@ import VoterItem from './VoterItem'
 export default function VotersContent () {
   const { voter, registeredVotersList } = useEventsProvider()
   
-  console.log("voter *----");
-  console.log(voter);
   return (
     <Flex direction="column" mt='10' maxWidth='50vh'>
       <Text fontWeight='medium' fontSize='xl'> Voters address available</Text>
