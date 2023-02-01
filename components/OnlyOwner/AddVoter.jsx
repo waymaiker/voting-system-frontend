@@ -5,11 +5,12 @@ import { useSigner } from "wagmi";
 
 import { contract } from "@/utils/constants";
 import useEventsProvider from "@/hooks/useEventsProvider";
+import { toastError } from "@/utils/methods";
 
 export const AddVoter = () => {
   const [userAddress, setUserAddress] = useState(0)
   const { data: signer } = useSigner()
-  const { isLoading, setIsLoading, getEvents } = useEventsProvider() 
+  const { isLoading, setIsLoading, getEvents } = useEventsProvider()
   const toast = useToast()
 
   const addVoter = async () => {
@@ -20,23 +21,18 @@ export const AddVoter = () => {
       await transaction.wait()
 
       await getEvents()
-      
+
     } catch (error) {
       setIsLoading(false)
-      toast({
-        title: 'Error - Add a Voter',
-        description: error.reason,
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      })
+      console.log(error);
+      toast(toastError("Add a Voter", error.message))
     }
   }
 
   return (
     <Flex p="5" backgroundColor="white" borderRadius="10" alignItems="center">
       <Button p="7" mr="5" isLoading={isLoading} loadingText='Submitting' onClick={() => addVoter()} colorScheme='blue'>
-        Register a Voter 
+        Register a Voter
       </Button>
       <Input p="7" onChange={(e) => setUserAddress(e.target.value)} placeholder="0x5QDS54SDFH65HF54...1" />
     </Flex>

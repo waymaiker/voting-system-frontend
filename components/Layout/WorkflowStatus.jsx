@@ -17,38 +17,43 @@ export default function WorkflowStatus() {
 
   const setWorkflowStatus = async () => {
       setIsLoading(true)
-      
+
       try {
         const contractInstance = new ethers.Contract(process.env.NEXT_PUBLIC_SCADDRESS, contract.abi, signer)
-        let transaction; 
-        let winningProposalId; 
+        let transaction;
+        let winningProposalId;
 
         switch (workflowStatus.nextStatus) {
           case 1:
             transaction = await contractInstance.startProposalsRegistering()
+            await transaction.wait()
             break;
           case 2:
             transaction = await contractInstance.endProposalsRegistering()
+            await transaction.wait()
           break;
           case 3:
             transaction = await contractInstance.startVotingSession()
+            await transaction.wait()
           break;
           case 4:
             transaction = await contractInstance.endVotingSession()
+            await transaction.wait()
           break;
           case 5:
             transaction = await contractInstance.tallyVotes()
+            await transaction.wait()
             winningProposalId = await contractInstance.winningProposalID.call()
             setWinningProposalId(winningProposalId)
           break;
           default:
             if(workflowStatus.previousStatus == 5){
-              winningProposalId = await contractInstance.winningProposalID.call()                        
-              setWinningProposalId(parseInt(winningProposalId))              
+              winningProposalId = await contractInstance.winningProposalID.call()
+              setWinningProposalId(parseInt(winningProposalId))
 
               toast(toastSuccess("Get Winning Proposal Id", "Transaction successful"))
             } else {
-              throw new Error("Invalid workflowStatus")        
+              throw new Error("Invalid workflowStatus")
             }
         }
 
@@ -65,7 +70,7 @@ export default function WorkflowStatus() {
         })
       }
     }
-  
+
 
   return (
     <Flex justifyContent="center">
@@ -84,7 +89,7 @@ export default function WorkflowStatus() {
               rightIcon={ workflowStatus.previousStatus < 5 && <ArrowRightIcon />}
               onClick={() => setWorkflowStatus()}
             >
-              {workflowStatus.previousStatus >= 5 ?  <Text> Get Winning Proposal Id </Text>  : <Text> Next status </Text> } 
+              {workflowStatus.previousStatus >= 5 ?  <Text> Get Winning Proposal Id </Text>  : <Text> Next status </Text> }
             </Button>
           : <ArrowRightIcon marginInline="5" />
         }

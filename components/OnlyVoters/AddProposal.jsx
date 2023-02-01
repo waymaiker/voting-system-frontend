@@ -23,7 +23,8 @@ const [description, setDescription] = useState("")
       await getEvents()
       toast(toastSuccess("Add proposal", "Transaction successful")) 
     } catch (error) {
-      toastError("Add proposal", error.reason)
+      setIsLoading(false)
+      toastError("Add proposal", error.data.message)
     }
   }  
 

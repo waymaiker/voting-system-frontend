@@ -22,7 +22,8 @@ export default function AddVote () {
       await getEvents()
       toast(toastSuccess("Add vote", "Transaction successful")) 
     } catch (error) {
-      toastError("Add vote", error.reason)
+      setIsLoading(false)
+      toastError("Add vote", error.message)
     }
   }
 

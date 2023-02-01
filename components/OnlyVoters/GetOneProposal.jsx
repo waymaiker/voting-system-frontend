@@ -28,7 +28,8 @@ export default function GetOneProposal () {
       await getEvents()
       toast(toastSuccess("Get a proposal", "Transaction successful"))
     } catch (error) {
-      toast(toastError("Get a proposal", error.reason))
+      setIsLoading(false)
+      toast(toastError("Get a proposal", error.message))
     }
   }
 

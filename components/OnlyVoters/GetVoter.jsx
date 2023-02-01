@@ -28,7 +28,8 @@ export default function GetVoter () {
       await getEvents()
       toast(toastSuccess("Get a voter", "Transaction successful"))      
     } catch (error) {
-      toastError("Get a voter", error.reason)
+      setIsLoading(false)
+      toastError("Get a voter", error.message)
     }
   }
 
