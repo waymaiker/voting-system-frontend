@@ -44,7 +44,7 @@ export default function WorkflowStatus() {
             transaction = await contractInstance.tallyVotes()
             await transaction.wait()
             winningProposalId = await contractInstance.winningProposalID.call()
-            setWinningProposalId(winningProposalId)
+            setWinningProposalId(parseInt(winningProposalId))
           break;
           default:
             if(workflowStatus.previousStatus == 5){

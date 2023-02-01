@@ -13,13 +13,14 @@ import VotesTailledView from '@/components/RegisteredVoter/VotesTailledView';
 
 import { WORKFLOW_STATUS_VALUE } from '@/utils/constants';
 import RegisteringVotersStatusView from '@/components/RegisteredVoter/RegisteringVotersStatusView';
+import ProposalsRegistrationStartedView from '@/components/RegisteredVoter/ProposalsRegistrationStartedView';
 
 export default function Home() {
   const { address } = useAccount()
   const { isOwnerConnected } = useOwnerProvider()
   const { isLoading, workflowStatus, registeredVotersList, proposalsListId, proposalsList, winningProposalId } = useEventsProvider()
-  const isRegisteredUser = registeredVotersList.length > 0 
-    && registeredVotersList.find((user) => user.address === address) != undefined 
+  const isRegisteredUser = registeredVotersList.length > 0
+    && registeredVotersList.find((user) => user.address === address) != undefined
     && !isOwnerConnected
 
   return (
@@ -40,10 +41,21 @@ export default function Home() {
                 Transaction in progress ...
               </Text>
             </Flex>
-          : <Flex  grow="1" justifyContent="center">
-              {isOwnerConnected && <OwnerView workflowStatus={workflowStatus} />}
-              {isRegisteredUser && <RegisteredVoterView />}
-              {!isOwnerConnected && !isRegisteredUser && <GuestView />}
+          : <Flex  grow="1" direction="column">
+              <Flex  justifyContent="center">
+                  {isOwnerConnected && <OwnerView workflowStatus={workflowStatus} />}
+                  {isRegisteredUser && <RegisteredVoterView />}
+                  {!isOwnerConnected && !isRegisteredUser
+                    && WORKFLOW_STATUS_VALUE[workflowStatus.previousStatus] != "VotesTallied"
+                    && <GuestView />
+                  }
+                </Flex>
+                {
+                  WORKFLOW_STATUS_VALUE[workflowStatus.previousStatus] == "VotesTallied"
+                  && <Flex grow="1" alignItems="center" justifyContent="center">
+                      <Text fontWeight='bold' fontSize='3xl'> The winning proposal is {winningProposalId} </Text>
+                    </Flex>
+                }
             </Flex>
         }
         </Layout>
@@ -64,15 +76,13 @@ const RegisteredVoterView = () =>
   <Flex direction="column" alignItems="center">
     <RegisteringVotersStatusView />
     <Flex grow="1" justifyItems="center">
-      <VotesTailledView />
+      <ProposalsRegistrationStartedView />
       <VotingSessionStartedView />
-    </Flex>    
+    </Flex>
   </Flex>
 
 const GuestView = () =>
-<Flex direction="column" justifyContent="center" alignItems="center">
   <Flex grow="1" direction="column" justifyContent="center" alignItems="center">
-    <Text fontSize="2xl" fontWeight="bold"> You are not registered </Text> 
-    <Text fontSize="2xl" fontWeight="bold">Please, contact the organizer </Text> 
-  </Flex> 
-</Flex>
+    <Text fontSize="2xl" fontWeight="bold"> You are not registered </Text>
+    <Text fontSize="2xl" fontWeight="bold">Please, contact the organizer </Text>
+  </Flex>
