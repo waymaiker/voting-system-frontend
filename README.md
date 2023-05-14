@@ -20,7 +20,7 @@ Few rules:
 
 ## Important
 
-- [My App demo on loom](https://www.loom.com/share/2df1c07a70cd42c6abd4d19e9b214e01)
+- [App demo](https://youtu.be/-qlC1fpG_Ag)
 - [Vercel app](https://nextjs-voting-system-mdczrnyz7-wdevblockchain-gmailcom.vercel.app/)
 - [Backend code base - Smart Contracts, Tests, Deployment ...](https://github.com/waymaiker/dapps-voting-system/blob/master/README.md#need-to-deploy-the-contract-on-goerli)
 
