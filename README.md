@@ -1,7 +1,5 @@
 # Voting system
 
-Alyra course project - phase 3
-
 A small organization has decided, to use a new vote system.  
 All voters are known to the organization and are whitelisted using their Ethereum address.   
 They can submit new proposals during a proposal registration session and can vote on proposals only during the voting session.  
